@@ -1,1 +1,1 @@
-To download click on "Code" and "Download ZIP".
+To download click on the green "Code" button and "Download ZIP".
