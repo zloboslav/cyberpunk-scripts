@@ -18,7 +18,7 @@ y UP::khopstop()
 khopstart()
 {
 	Send {RButton down}
-	Send {space down}
+	;Send {space down}
 	loop, 40			; EDIT TIMIMNG VALUE HERE!!! Default is 40.
 	{
 		sleep, 10
@@ -27,7 +27,7 @@ khopstart()
 		Send {w up}
 	}
 	Send {RButton up}
-	Send {space up}
+	;Send {space up}
 	Send {w down}
 	sleep, 100
 	loop
