@@ -18,7 +18,7 @@ y UP::khopstop()
 khopstart()
 {
 	Send {RButton down}
-	Send {space down}
+	;Send {space down}
 	loop, 40			; EDIT TIMIMNG VALUE HERE!!! Default is 40.
 	{
 		sleep, 10
@@ -27,7 +27,7 @@ khopstart()
 		Send {w up}
 	}
 	Send {RButton up}
-	Send {space up}
+	;Send {space up}
 	Send {w down}
 	sleep, 100
 	loop
@@ -44,94 +44,32 @@ khopstop()
 }
 return
 
-; Keep pressing U with good timing for Maneuvering System bunny hop.
-; You MUST be in the AIR close enough to the ground to execute the dash with immediate jump macro.
-; It is advisable first to learn how to do it for real and understand the timing in order to understand the macro.
-
-u::
-Send {w down}
-Sleep, 10
-Send {w up}
-Sleep, 10
-Send {w down}
-Sleep, 10
-Send {w up}
-Sleep, 200
-Send {space down}
-Sleep, 10
-Send {space up}
-Sleep, 100
-return
-
 
 ; HIGH JUMP scrips for normal Fortified Ankles(charged jump) + Maneuvering system (BOTH MUST BE EQUIPPED).
+; ATTENTION: FALLING DAMAGE!
 
 
-; Press F3 for charged jump - dash - charged jump combo WHILE HOLDING A MOVEMENT BUTTON.
-; This is the highest jump!
-; ATTENTION: FALLING DAMAGE ON SAME OR BIGGER HEIGHT!
+; Press Control + Space for charged jump - dodge combo WHILE HOLDING A MOVEMENT BUTTON.
+; You can chain a manual second jump within a short timeframe.
+
+^space::
+Send {space down}
+Sleep, 500
+Send {space up}
+Send {c down}
+Sleep, 10
+Send {c up}
+Sleep, 10
+Send {c down}
+Sleep, 10
+Send {c up}
+return
+
+; Press F3 for High jump: charged jump - forward dodge combo WITHOUT holding WASD buttons.
+; Move WASD only after the forward dodge or it won't work!
+; You can chain a second jump.
 
 F3::
-Send {space down}
-Sleep, 500
-Send {space up}
-Send {c down}
-Sleep, 10
-Send {c up}
-Sleep, 10
-Send {c down}
-Sleep, 10
-Send {c up}
-Send {space down}
-Sleep, 1000
-Send {space up}
-return
-
-; Press F4 for charged jump - dash combo WHILE HOLDING A MOVEMENT BUTTON.
-; Feel free to chain a manual second jump within a short timeframe.
-
-F4::
-Send {space down}
-Sleep, 500
-Send {space up}
-Send {c down}
-Sleep, 10
-Send {c up}
-Sleep, 10
-Send {c down}
-Sleep, 10
-Send {c up}
-return
-
-; Same jump scripts, but without holding WASD.
-
-; Press F6 for charged jump - forward dash - charged jump combo WITHOUT holding WASD buttons.
-; This is the highest jump!
-; ATTENTION: FALLING DAMAGE ON SAME OR BIGGER HEIGHT!
-; Move WASD only after the forward dash or it won't work!
-
-F6::
-Send {space down}
-Sleep, 500
-Send {space up}
-Send {w down}
-Sleep, 10
-Send {w up}
-Sleep, 10
-Send {w down}
-Sleep, 10
-Send {w up}
-Send {space down}
-Send {w down}
-Sleep, 1000
-Send {space up}
-Send {w up}
-return
-
-; Press F7 for charged jump - forward dash combo WITHOUT holding WASD buttons.
-; Move WASD only after the forward dash or it won't work!
-
-F7::
 Send {space down}
 Sleep, 500
 Send {space up}
@@ -148,8 +86,8 @@ return
 ; LONG JUMP scripts.
 ; MUST HAVE normal Fortified Ankles(charged jump) + Maneuvering system + Kereznikov.
 
-; F1 is forward k-hop boost + 1 power jump + 1 dash
-; Feel free to chain a manual second jump within a short timeframe.
+; F1 is forward k-hop boost + power jump + forward dodge
+; You can chain a manual second jump within a short timeframe.
 ; REMEBER TO CHANGE THE TIMING VALUE IF NEEDED!
 
 F1::
@@ -178,7 +116,7 @@ return
 
 F2::
 Send {RButton down}
-Send {space down}
+
 loop, 40			; EDIT TIMIMNG VALUE HERE!!! Default is 40.
 {
 	sleep, 10
@@ -188,17 +126,36 @@ loop, 40			; EDIT TIMIMNG VALUE HERE!!! Default is 40.
 }
 Send {RButton up}
 Sleep, 20
+
+Send {space down}
+
 Send {space up}
 return
 
 
 ; BONUS quality of life scrips :)
 
+; Mouse side keys 4 and 5 bound to W and Space repeater (autojump).
 
-XButton2::w			; Mouse side keys 4 and 5 bound to W and S for walking.
+XButton2::w			
 return
-XButton1::s
+
+XButton1::autojumpstart()
+XButton1 UP::autojumpstop()
+autojumpstart()
+{
+	loop
+	{
+	Send {space}
+	sleep, 10
+	}
+}
+autojumpstop()
+{
+	Reload
+}
 return
+
 
 F8::autoclickstart()		; F8 is an autoclicker for the left mouse button.
 F8 UP::autoclickstop()
