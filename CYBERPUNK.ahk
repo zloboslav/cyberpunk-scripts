@@ -141,7 +141,9 @@ autojumpstart()
 {
 	loop
 	{
-	Send {space}
+	Send {space down}
+	Sleep, 20
+	Send {space up}
 	}
 }
 autojumpstop()
